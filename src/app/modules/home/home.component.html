@@ -1,0 +1,27 @@
+<div class="home-box">
+    <div class="home-my-notes">
+        <h2>Minhas Notas</h2>
+        <div class="home-my-notes-card" *ngFor="let note of notesList">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.describe }}</p>
+        </div>
+        <h3 *ngIf="!notesList.length">Você não possui nenhuma nota salva.</h3>
+    </div>
+
+    <div class="home-edit-my-notes">
+        <div class="home-edit-my-notes-inputs-box">
+            <input required type="text">
+            <h2>Titulo</h2>
+        </div>
+        <div class="home-edit-my-notes-inputs-box describe">
+            <input required type="text">
+            <h2>Descrição</h2>
+        </div>
+        <div class="home-edit-my-notes-inputs-box content">
+            <cite contenteditable="true"></cite>
+        </div>
+        <div class="home-edit-my-notes-inputs-box buttons">
+            <button>Salvar Nota</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<ng-container *ngIf="isOpenSidebar">
+    <div class="side-bar-box">
+            <ng-container *ngIf="!isOpenRegister && !isOpenLogin">
+                <ul class="side-bar-menu">
+                    <li *ngIf="true"><mat-icon>home</mat-icon>Home</li>
+                    <ng-container *ngIf="true; else favorite">
+                        <li (click)="setOpenLogin()"><mat-icon>group</mat-icon>Login</li>
+                        <li (click)="setOpenRegister()"><mat-icon>group_add</mat-icon>Cadastro</li>
+                    </ng-container>
+                    <ng-template #favorite>
+                        <li><mat-icon>favorite</mat-icon>Favoritas</li>
+                    </ng-template>
+                </ul>
+            </ng-container>
+
+            <ng-container *ngIf="isOpenRegister && !isOpenLogin">
+                <div class="side-bar-box-form">
+                    <h2>Junte-se a Nós</h2>
+                    <p>Salve todas as suas anotações com agilidade e rapidez</p>
+
+                    <form class="side-bar-box-inputs" [formGroup]="formRegister" (ngSubmit)="register()">
+                        <div class="side-bar-box-input-card">
+                            <input type="text" required formControlName="name">
+                            <h4>Nome:</h4>
+                        </div>
+
+                        <div class="side-bar-box-input-card">
+                            <input type="text" required formControlName="email">
+                            <h4>Email:</h4>
+                        </div>
+
+                        <div class="side-bar-box-input-card">
+                            <input type="text" required formControlName="emailConfirmation">
+                            <h4>Confirme o Email:</h4>
+                            <h6 *ngIf="incorrectEmails">Emails não coincidem</h6>
+                        </div>
+
+
+                        <div class="side-bar-box-input-card">
+                            <input type="password" required formControlName="password">
+                            <h4>Senha:</h4>
+                        </div>
+
+                        <div class="side-bar-box-input-card">
+                            <input type="password" required formControlName="passwordConfirmation">
+                            <h4>Confirme a Senha:</h4>
+                            <h6 *ngIf="incorrectPassword">Senhas não coincidem</h6>
+                        </div>
+
+                        <button>Cadastre-se</button>
+                        <p class="side-bar-redirect">Já uma conta? <b (click)="setOpenLogin()">Faça Login</b></p>
+                    </form>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isOpenRegister && isOpenLogin">
+                <div class="side-bar-box-form login">
+                    <h2>Faça o Login</h2>
+                    <p>Acesse todas as suas notas salvas</p>
+
+                    <form class="side-bar-box-inputs" [formGroup]="formLogin" (ngSubmit)="login()">
+                        <div class="side-bar-box-input-card">
+                            <input type="text" required formControlName="email">
+                            <h4>Email:</h4>
+                        </div>
+
+                        <div class="side-bar-box-input-card">
+                            <input type="password" required formControlName="password">
+                            <h4>Senha:</h4>
+                            <h6 *ngIf="incorrectLogin">Email ou Senha Incorretos</h6>
+                        </div>
+                        <button>Login</button>
+                        <p class="side-bar-redirect">Ainda não tem uma conta? <b (click)="setOpenRegister()">Cadastre-se</b></p>
+                    </form>
+                </div>
+            </ng-container>
+
+            <p>Desenvolvido por Paulo Enrique</p>
+        </div>
+</ng-container>

@@ -1,0 +1,49 @@
+.header-background {
+    background-color: var(--background-color);
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    justify-content: space-between;
+    box-shadow:  0 4px 16px rgb(0 0 0 / 8%);
+}
+
+.menu-hamburguer {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.button-loggout {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+h1 {
+    color: var(--destak-color);
+}
+
+h2 {
+    color: var(--destak-color);
+}
+
+h2 span {
+    color: var(--text-primary-color);
+}
+
+.header-box {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+mat-icon {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    color: var(--text-primary-color);
+}

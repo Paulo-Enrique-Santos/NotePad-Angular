@@ -1,0 +1,22 @@
+<div class="header-background">
+    <div class="header-box">
+        <div class="menu-hamburguer">
+            <ng-container *ngIf="!isOpenSidebar; else closeIconSidebar">
+                <mat-icon (click)="clickedButton()">menu</mat-icon>
+            </ng-container>
+            <ng-template #closeIconSidebar>
+                <mat-icon (click)="clickedButton()">clear</mat-icon>
+            </ng-template>
+        </div>
+        <h1>NotePad</h1>
+    </div>
+
+    <ng-container *ngIf="isLogged">
+        <div class="header-box">
+            <h2><span>Olá,</span> {{ user.name }}</h2>
+            <div class="button-loggout">
+                <mat-icon>power_settings_new</mat-icon>
+            </div>
+        </div>
+    </ng-container>
+</div>

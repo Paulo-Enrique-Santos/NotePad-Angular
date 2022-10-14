@@ -1,0 +1,25 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "email": "paulo@paulo.com",
+      "name": "Paulo",
+      "password": "123456"
+    },
+    {
+      "email": "paulinho@sptech.com",
+      "name": "Paulo Enrique",
+      "password": "12345678",
+      "id": 2
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "idUser": 1,
+      "title": "Teste de DB JSON",
+      "describe": "Essa lista é só um teste",
+      "content": "Essa nota foi criada apenas para testar se o DB JSON está funcionando corretamente, e nada mais além disso."
+    }
+  ]
+}
