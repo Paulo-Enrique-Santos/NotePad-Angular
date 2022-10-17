@@ -8,20 +8,20 @@
         <h3 *ngIf="!notesList.length">Você não possui nenhuma nota salva.</h3>
     </div>
 
-    <div class="home-edit-my-notes">
+    <form class="home-edit-my-notes" [formGroup]="formNote" (ngSubmit)="createNewNote()">
         <div class="home-edit-my-notes-inputs-box">
-            <input required type="text">
+            <input required type="text" formControlName="title">
             <h2>Titulo</h2>
         </div>
         <div class="home-edit-my-notes-inputs-box describe">
-            <input required type="text">
+            <input required type="text" formControlName="describe">
             <h2>Descrição</h2>
         </div>
-        <div class="home-edit-my-notes-inputs-box content">
-            <cite contenteditable="true"></cite>
+        <div class="home-edit-my-notes-inputs-box content teste" >
+            <textarea type="text" formControlName="content"></textarea>
         </div>
         <div class="home-edit-my-notes-inputs-box buttons">
             <button>Salvar Nota</button>
         </div>
-    </div>
+    </form>
 </div>

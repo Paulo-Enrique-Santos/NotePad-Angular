@@ -11,9 +11,9 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit { 
-  public user!: User;
+  @Input() public user!: User;
+  @Output() public event: EventEmitter<any> = new EventEmitter();
   public idUser?: number;
-  public isLogged: boolean = this.loginService.loggedUser;
   
   constructor(
     private userService: UserService,
@@ -31,15 +31,25 @@ export class HeaderComponent implements OnInit {
 
   public getUserLocalData(): void {
     this.userService
-    .getUserList(
-      this.userService.getIdUserLogged()
-    )
-    .subscribe((res: Array<User>) => {
-      this.user = res[0];
-    });
+      .getUserList(
+        this.userService.getIdUserLogged()
+      )
+      .subscribe((res: Array<User>) => {
+        this.user = res[0];
+      });
+  }
+
+  public logout(): void {
+    this.userService.removeIdUserLogged();
+    this.loginService.removeLoggedUser();
+    this.event.emit();
   }
 
   public get isOpenSidebar(): boolean {
     return this.loginService.getSideBarState().value;
+  }
+
+  public get isLogged(): boolean {
+    return this.loginService.loggedUser !== null ? this.loginService.loggedUser : false;
   }
 }

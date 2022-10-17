@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -12,6 +12,8 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+  @Output() public event: EventEmitter<any> = new EventEmitter();
+
   public isOpenRegister: boolean = false;
   public isOpenLogin: boolean = false;
   public incorrectEmails: boolean = false;
@@ -76,14 +78,15 @@ export class SideBarComponent implements OnInit {
     ).subscribe(
       (res: Array<User>) => {
         const idUser: number = res[0].id!;
-
+        
         if (!idUser) {
           this.incorrectLogin = true;
         } else {
-          this.loginService.setLoggedUser();
-          this.loginService.toggleSideBar();
           this.incorrectLogin = false;
           this.userService.setIdUserLogged(idUser);
+          this.loginService.toggleSideBar();
+          this.loginService.setLoggedUser();
+          this.event.emit();
         }
       }
     )

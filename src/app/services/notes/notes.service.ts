@@ -15,9 +15,15 @@ export class NotesService {
     private http: HttpClient
   ) { }
 
-  public getNotesForClients(
+  public getNotesLocalData(
     idUser: number
   ): Observable<Notes[]> {
     return this.http.get<Array<Notes>>(`${this.API_URL}?idUser=${idUser}`);
+  }
+
+  public createNote(
+    notes: Notes
+  ): Observable<Notes> {
+    return this.http.post<Notes>(this.API_URL, notes);
   }
 }

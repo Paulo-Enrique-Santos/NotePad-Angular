@@ -12,8 +12,6 @@ export class LoginService {
 
   public toggleSideBar(): void {
     this.isOpenSideBarSubject.next(this.isOpenSideBarSubject.value ? false : true);
-    console.log('rodei essa função');
-    console.log(this.isOpenSideBarSubject.value)
   }
 
   public getSideBarState(): BehaviorSubject<boolean> {
@@ -26,5 +24,9 @@ export class LoginService {
 
   public get loggedUser(): boolean {
     return JSON.parse(localStorage.getItem('isLogged')!);
+  }
+
+  public removeLoggedUser(): void {
+    localStorage.removeItem('isLogged');
   }
 }

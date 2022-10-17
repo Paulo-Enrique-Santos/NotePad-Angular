@@ -6,6 +6,8 @@
 
 .home-my-notes {
     min-height: 80vh;
+    max-height: 80vh;
+    overflow-y: scroll;
     width: 35%;
     padding: 20px;
     display: flex;
@@ -14,6 +16,16 @@
     gap: 20px;
     border-radius: 10px;
     box-shadow:  0 4px 16px rgb(0 0 0 / 8%);
+}
+
+.home-my-notes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.home-my-notes::-webkit-scrollbar-thumb {
+    background-color: var(--background-micro-card-color);
+    height: 20px;
+    border-radius: 20px;
 }
 
 .home-my-notes h2 {
@@ -118,11 +130,13 @@
     padding: 10px;
 }
 
-cite {
+textarea {
     width: 100%;
     outline: none;
     color: var(--text-primary-color);
     font-size: 18px;
+    border: none;
+    resize: none;
 }
 
 .buttons {

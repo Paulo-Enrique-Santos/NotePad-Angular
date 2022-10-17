@@ -15,7 +15,7 @@
         <div class="header-box">
             <h2><span>Olá,</span> {{ user.name }}</h2>
             <div class="button-loggout">
-                <mat-icon>power_settings_new</mat-icon>
+                <mat-icon (click)="logout()">power_settings_new</mat-icon>
             </div>
         </div>
     </ng-container>
