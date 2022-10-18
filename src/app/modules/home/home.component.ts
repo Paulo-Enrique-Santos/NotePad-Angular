@@ -46,17 +46,43 @@ export class HomeComponent implements OnInit {
   }
 
   public selectUpdateNote(note: Note): void {
-    console.log(note);
+    this.noteService.setIdNoteLocalData(note.id!);
+
+    console.log(note.id);
+    this.noteService
+      .getNoteById(note.id!)
+      .subscribe((res: Note[]) => {
+        this.formNote.get('title')?.setValue(res[0].title);
+        this.formNote.get('describe')?.setValue(res[0].describe);
+        this.formNote.get('content')?.setValue(res[0].content);
+      });
   }
 
   public createOrEditNote(): void {
     const idNote: number = this.noteService.getIdNoteLocalData();
-
-    idNote !== null ? this.createNewNote() : this.updateNote(idNote);
+    console.log(this.formNote.value)
+    !idNote ? this.createNewNote() : this.updateNote(idNote);
   }
 
   public updateNote(idNote: number): void {
+    const idUser: number = this.userService.getIdUserLogged();
 
+    const note: Note = {
+      idUser: !idUser ? 0 : idUser,
+      title: this.formNote.value.title,
+      describe: this.formNote.value.describe,
+      content: this.formNote.value.content
+    }
+
+    this.noteService
+      .updateNoteById(idNote, note)
+      .subscribe(
+        () => {
+          this.formNote.reset();
+          this.getNoteList();
+          this.noteService.removeIdNoteLocalData();
+        }
+      );
   }
 
   public getNoteList(): void {

@@ -17,3 +17,7 @@ app-header {
     max-height: 10%;
 }
 
+.mat-drawer-backdrop {
+    transition: .8s;
+}
+

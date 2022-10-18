@@ -1,27 +1,12 @@
 .side-bar-box {
-    height: 100vh;
+    height: calc(100vh - 70px);
     width: 20vw;
-    position: fixed;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     background-color: var(--background-color);
     padding: 20px;
     border-right: 2px solid var(--text-secundary-color);
-}
-
-ng-container {
-    animation: openSidebar .4s forwards;
-}
-
-@keyframes openSidebar {
-    from {
-        opacity: 0.0;
-    }
-
-    to {
-        opacity: 1.00;
-    }
 }
 
 .side-bar-menu {
@@ -154,7 +139,6 @@ mat-icon {
 }
 
 p {
-    padding-bottom: 8vh;
     text-align: center;
     color: var(--text-secundary-color);
 }

@@ -12,7 +12,10 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class HeaderComponent implements OnInit { 
   @Input() public user!: User;
-  @Output() public event: EventEmitter<any> = new EventEmitter();
+  @Input() public isOpenSidebar = false;
+
+  @Output() public event: EventEmitter<boolean> = new EventEmitter();
+  
   public idUser?: number;
   
   constructor(
@@ -26,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public clickedButton(): void {
-    this.loginService.toggleSidebar();
+    this.event.emit(true);
   }
 
   public getUserLocalData(): void {
@@ -43,10 +46,6 @@ export class HeaderComponent implements OnInit {
     this.userService.removeIdUserLogged();
     this.loginService.removeLoggedUser();
     this.event.emit();
-  }
-
-  public get isOpenSidebar(): boolean {
-    return this.loginService.getSidebarState().value;
   }
 
   public get isLogged(): boolean {

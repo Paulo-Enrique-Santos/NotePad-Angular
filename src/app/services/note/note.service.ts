@@ -15,10 +15,16 @@ export class NoteService {
     private http: HttpClient
   ) { }
 
-  public getNoteListByIdUser(
-    idUser: number
-  ): Observable<Note[]> {
+  public getNoteListByIdUser(idUser: number): Observable<Note[]> {
     return this.http.get<Array<Note>>(`${this.API_URL}?idUser=${idUser}`);
+  }
+
+  public getNoteById(idNote: number): Observable<Note[]> {
+    return this.http.get<Array<Note>>(`${this.API_URL}?id=${idNote}`);
+  }
+
+  public updateNoteById(idNote: number, note: Note): Observable<Note> {
+    return this.http.put<Note>(`${this.API_URL}/${idNote}`, note);
   }
 
   public createNote(

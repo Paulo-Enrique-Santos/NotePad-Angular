@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { NoteService } from './services/note/note.service';
 import { UserService } from './services/user/user.service';
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   public title = 'NotePad-Angular';
   public noteList: Note[] = [];
   public user!: User;
+  public isOpenSidebar: boolean = false;
 
   public constructor (
     private noteService: NoteService,
@@ -22,6 +24,16 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getNoteList();
+  }
+
+  public toggleSidebar(menuSidebar: MatSidenav): void {
+    if (menuSidebar.opened) {
+      this.isOpenSidebar = false;
+      menuSidebar.close();
+    } else {
+      this.isOpenSidebar = true;
+      menuSidebar.open();
+    }
   }
 
   public getNoteList(): void {

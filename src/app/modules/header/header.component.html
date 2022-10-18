@@ -1,12 +1,7 @@
 <div class="header-background">
-    <div class="header-box">
+    <div class="header-box header-box-menu">
         <div class="menu-hamburguer">
-            <ng-container *ngIf="!isOpenSidebar; else closeIconSidebar">
-                <mat-icon (click)="clickedButton()">menu</mat-icon>
-            </ng-container>
-            <ng-template #closeIconSidebar>
-                <mat-icon (click)="clickedButton()">clear</mat-icon>
-            </ng-template>
+            <mat-icon (click)="clickedButton()"> {{ !isOpenSidebar ? 'menu' : 'clear' }}</mat-icon>
         </div>
         <h1>NotePad</h1>
     </div>

@@ -84,7 +84,6 @@ export class SideBarComponent implements OnInit {
         } else {
           this.incorrectLogin = false;
           this.userService.setIdUserLogged(idUser);
-          this.loginService.toggleSidebar();
           this.loginService.setLoggedUserLocalData();
           this.event.emit();
         }
@@ -106,9 +105,5 @@ export class SideBarComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-  }
-
-  public get isOpenSidebar(): boolean {
-    return this.loginService.getSidebarState().value;
   }
 }

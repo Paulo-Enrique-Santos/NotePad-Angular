@@ -4,7 +4,7 @@
     height: 70px;
     display: flex;
     align-items: center;
-    padding: 0 25px;
+    padding: 0 25px 0 0;
     justify-content: space-between;
     box-shadow:  0 4px 16px rgb(0 0 0 / 8%);
 }
@@ -37,6 +37,12 @@ h2 span {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+.header-box-menu {
+    gap: 0;
+    width: 20vw;
+    padding: 0 20px;
 }
 
 mat-icon {
