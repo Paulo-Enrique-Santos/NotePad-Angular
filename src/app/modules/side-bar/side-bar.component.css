@@ -10,8 +10,23 @@
     border-right: 2px solid var(--text-secundary-color);
 }
 
+ng-container {
+    animation: openSidebar .4s forwards;
+}
+
+@keyframes openSidebar {
+    from {
+        opacity: 0.0;
+    }
+
+    to {
+        opacity: 1.00;
+    }
+}
+
 .side-bar-menu {
     list-style: none;
+    animation: openSidebar .8s forwards;
 }
 
 .side-bar-box-form {

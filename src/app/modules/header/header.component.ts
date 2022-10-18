@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public clickedButton(): void {
-    this.loginService.toggleSideBar();
+    this.loginService.toggleSidebar();
   }
 
   public getUserLocalData(): void {
@@ -46,10 +46,10 @@ export class HeaderComponent implements OnInit {
   }
 
   public get isOpenSidebar(): boolean {
-    return this.loginService.getSideBarState().value;
+    return this.loginService.getSidebarState().value;
   }
 
   public get isLogged(): boolean {
-    return this.loginService.loggedUser !== null ? this.loginService.loggedUser : false;
+    return this.loginService.loggedUserLocalData !== null ? this.loginService.loggedUserLocalData : false;
   }
 }

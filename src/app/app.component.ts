@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NotesService } from './services/notes/notes.service';
+import { NoteService } from './services/note/note.service';
 import { UserService } from './services/user/user.service';
-import { Notes } from './shared/models/notes.model';
+import { Note } from './shared/models/note.model';
 import { User } from './shared/models/user.model';
 
 @Component({
@@ -12,27 +12,27 @@ import { User } from './shared/models/user.model';
 })
 export class AppComponent implements OnInit {
   public title = 'NotePad-Angular';
-  public notesList: Notes[] = [];
+  public noteList: Note[] = [];
   public user!: User;
 
   public constructor (
-    private notesService: NotesService,
+    private noteService: NoteService,
     private userService: UserService
   ) {}
 
   public ngOnInit(): void {
-    this.getNotesLocalData();
+    this.getNoteList();
   }
 
-  public getNotesLocalData(): void {
+  public getNoteList(): void {
     const idUser: number = this.userService.getIdUserLogged() === null ? 0 : this.userService.getIdUserLogged();
 
     idUser !== 0 && this.getUserLocalData();
     
-    this.notesService
-      .getNotesLocalData(idUser)
-      .subscribe((res: Notes[]) => {
-        this.notesList = res;
+    this.noteService
+      .getNoteListByIdUser(idUser)
+      .subscribe((res: Note[]) => {
+        this.noteList = res;
       });
   }
 

@@ -4,8 +4,8 @@
                 <ul class="side-bar-menu">
                     <li *ngIf="true"><mat-icon>home</mat-icon>Home</li>
                     <ng-container *ngIf="true; else favorite">
-                        <li (click)="setOpenLogin()"><mat-icon>group</mat-icon>Login</li>
-                        <li (click)="setOpenRegister()"><mat-icon>group_add</mat-icon>Cadastro</li>
+                        <li (click)="openLoginSidebar()"><mat-icon>group</mat-icon>Login</li>
+                        <li (click)="openRegisterSidebar()"><mat-icon>group_add</mat-icon>Cadastro</li>
                     </ng-container>
                     <ng-template #favorite>
                         <li><mat-icon>favorite</mat-icon>Favoritas</li>
@@ -48,7 +48,7 @@
                         </div>
 
                         <button>Cadastre-se</button>
-                        <p class="side-bar-redirect">Já uma conta? <b (click)="setOpenLogin()">Faça Login</b></p>
+                        <p class="side-bar-redirect">Já uma conta? <b (click)="openLoginSidebar()">Faça Login</b></p>
                     </form>
                 </div>
             </ng-container>
@@ -70,7 +70,7 @@
                             <h6 *ngIf="incorrectLogin">Email ou Senha Incorretos</h6>
                         </div>
                         <button>Login</button>
-                        <p class="side-bar-redirect">Ainda não tem uma conta? <b (click)="setOpenRegister()">Cadastre-se</b></p>
+                        <p class="side-bar-redirect">Ainda não tem uma conta? <b (click)="openRegisterSidebar()">Cadastre-se</b></p>
                     </form>
                 </div>
             </ng-container>

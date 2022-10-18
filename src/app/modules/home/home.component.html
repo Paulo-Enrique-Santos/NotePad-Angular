@@ -1,14 +1,16 @@
 <div class="home-box">
     <div class="home-my-notes">
         <h2>Minhas Notas</h2>
-        <div class="home-my-notes-card" *ngFor="let note of notesList">
-            <h3>{{ note.title }}</h3>
-            <p>{{ note.describe }}</p>
-        </div>
-        <h3 *ngIf="!notesList.length">Você não possui nenhuma nota salva.</h3>
+        <ng-container *ngFor="let note of noteList">
+            <div class="home-my-notes-card" (click)="selectUpdateNote(note)">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.describe }}</p>
+            </div>
+        </ng-container>
+        <h3 *ngIf="!noteList.length">Você não possui nenhuma nota salva.</h3>
     </div>
 
-    <form class="home-edit-my-notes" [formGroup]="formNote" (ngSubmit)="createNewNote()">
+    <form class="home-edit-my-notes" [formGroup]="formNote" (ngSubmit)="createOrEditNote()">
         <div class="home-edit-my-notes-inputs-box">
             <input required type="text" formControlName="title">
             <h2>Titulo</h2>

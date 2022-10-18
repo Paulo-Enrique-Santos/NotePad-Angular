@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotesService } from 'src/app/services/notes/notes.service';
+import { NoteService } from 'src/app/services/note/note.service';
 import { UserService } from 'src/app/services/user/user.service';
 
-import { Notes } from 'src/app/shared/models/notes.model';
+import { Note } from 'src/app/shared/models/note.model';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +11,13 @@ import { Notes } from 'src/app/shared/models/notes.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @Input() public notesList: Notes[] = []; 
+  @Input() public noteList: Note[] = []; 
 
   public formNote!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private notesService: NotesService,
+    private noteService: NoteService,
     private userService: UserService
   ) { }
 
@@ -28,30 +28,44 @@ export class HomeComponent implements OnInit {
   public createNewNote(): void {
     const idUser: number = this.userService.getIdUserLogged();
 
-    const notes: Notes = {
+    const note: Note = {
       idUser: idUser === null ? 0 : idUser,
       title: this.formNote.value.title,
       describe: this.formNote.value.describe,
       content: this.formNote.value.content
     }
 
-    this.notesService
-      .createNote(notes)
+    this.noteService
+      .createNote(note)
       .subscribe(
         () => {
           this.formNote.reset();
-          this.getNotesLocalData();
+          this.getNoteList();
         }
       );
   }
 
-  public getNotesLocalData(): void {
+  public selectUpdateNote(note: Note): void {
+    console.log(note);
+  }
+
+  public createOrEditNote(): void {
+    const idNote: number = this.noteService.getIdNoteLocalData();
+
+    idNote !== null ? this.createNewNote() : this.updateNote(idNote);
+  }
+
+  public updateNote(idNote: number): void {
+
+  }
+
+  public getNoteList(): void {
     const idUser: number = this.userService.getIdUserLogged() === null ? 0 : this.userService.getIdUserLogged();
 
-    this.notesService
-      .getNotesLocalData(idUser)
-      .subscribe((res: Notes[]) => {
-        this.notesList = res;
+    this.noteService
+      .getNoteListByIdUser(idUser)
+      .subscribe((res: Note[]) => {
+        this.noteList = res;
       });
   }
 

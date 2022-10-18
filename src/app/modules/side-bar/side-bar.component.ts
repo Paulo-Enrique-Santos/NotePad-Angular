@@ -33,12 +33,12 @@ export class SideBarComponent implements OnInit {
     this.setValidatorsForm();
   }
 
-  public setOpenLogin(): void {
+  public openLoginSidebar(): void {
     this.isOpenLogin = true;
     this.isOpenRegister = false;
   }
 
-  public setOpenRegister(): void {
+  public openRegisterSidebar(): void {
     this.isOpenRegister = true;
     this.isOpenLogin = false;
   }
@@ -65,7 +65,7 @@ export class SideBarComponent implements OnInit {
     this.userService
     .setRegisterUser(this.user)
     .subscribe(
-      () => this.setOpenLogin(),
+      () => this.openLoginSidebar(),
       () => console.log("Usuário não Cadastrado!")
     );
   }
@@ -84,8 +84,8 @@ export class SideBarComponent implements OnInit {
         } else {
           this.incorrectLogin = false;
           this.userService.setIdUserLogged(idUser);
-          this.loginService.toggleSideBar();
-          this.loginService.setLoggedUser();
+          this.loginService.toggleSidebar();
+          this.loginService.setLoggedUserLocalData();
           this.event.emit();
         }
       }
@@ -109,6 +109,6 @@ export class SideBarComponent implements OnInit {
   }
 
   public get isOpenSidebar(): boolean {
-    return this.loginService.getSideBarState().value;
+    return this.loginService.getSidebarState().value;
   }
 }

@@ -10,19 +10,19 @@ export class LoginService {
   
   constructor() { }
 
-  public toggleSideBar(): void {
+  public toggleSidebar(): void {
     this.isOpenSideBarSubject.next(this.isOpenSideBarSubject.value ? false : true);
   }
 
-  public getSideBarState(): BehaviorSubject<boolean> {
+  public getSidebarState(): BehaviorSubject<boolean> {
     return this.isOpenSideBarSubject;
   }
 
-  public setLoggedUser(): void {
+  public setLoggedUserLocalData(): void {
     localStorage.setItem('isLogged', JSON.stringify(true));
   }
 
-  public get loggedUser(): boolean {
+  public get loggedUserLocalData(): boolean {
     return JSON.parse(localStorage.getItem('isLogged')!);
   }
 

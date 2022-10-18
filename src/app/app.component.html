@@ -1,8 +1,8 @@
 <div class="ui-view">
-  <app-header [user]="user" (event)="getNotesLocalData()"></app-header>
-  <app-side-bar (event)="getNotesLocalData()"></app-side-bar>
+  <app-header [user]="user" (event)="getNoteList()"></app-header>
+  <app-side-bar (event)="getNoteList()"></app-side-bar>
 
   <div class="ui-view-container">
-    <app-home [notesList]="notesList"></app-home>
+    <app-home [noteList]="noteList"></app-home>
   </div>
 </div>
